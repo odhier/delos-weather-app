@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 
 void main() {
   runApp(GetMaterialApp(
+    debugShowCheckedModeBanner: false,
     locale: Get.deviceLocale,
     initialRoute: '/home',
     getPages: [
