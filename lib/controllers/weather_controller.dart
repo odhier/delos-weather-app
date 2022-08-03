@@ -7,7 +7,8 @@ final env = Env();
 final baseUrl = env.baseUrl;
 
 class WeatherController extends GetxController{
-  static Future<List<Weather>?> getWeatherList() async {
+  static Future<List<Weather>> getWeatherList() async {
+    List _temp = [];
     var uri = Uri.https(baseUrl, '/data/2.5/forecast', {
       "lat": env.lat,
       "lon": env.lon,
@@ -18,13 +19,13 @@ class WeatherController extends GetxController{
       final response = await http.get(uri);
 
       Map data = jsonDecode(response.body);
-      List _temp = [];
+      
       for(var i in data['list']){
         _temp.add(i);
       }
-      return Weather.weatherFromSnapshot(_temp);
     } catch(error){
       // print(error);
     }
+    return Weather.weatherFromSnapshot(_temp);
   }
 }

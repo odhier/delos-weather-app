@@ -13,7 +13,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  List<Weather>? _weathers;
+  List<Weather> _weathers = [];
   bool _isLoading = true;
 
   @override
@@ -23,9 +23,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   Future<void> getWeatherList() async {
-    setState(() {
-      _isLoading = true;
-    });
+    setState(() {_isLoading = true;});
     _weathers = await WeatherController.getWeatherList();
     setState(() {
       _isLoading = false;
@@ -40,18 +38,42 @@ class _HomePageState extends State<HomePage> {
         width: MediaQuery.of(context).size.width,
         child: _isLoading
             ? Center(child: CircularProgressIndicator())
-            : RefreshIndicator(
-                onRefresh: getWeatherList,
-                child: ListView.separated(
-                  itemCount: _weathers!.length,
-                  separatorBuilder: (BuildContext context, int index) =>
-                      Divider(height: 2),
-                  itemBuilder: (context, index) {
-                    return WeatherWidget(weather: _weathers![index]);
-                  }
-                )
-              )
+            : _weathers.isEmpty
+                ? errorMessage()
+                : RefreshIndicator(
+                    onRefresh: getWeatherList,
+                    child: ListView.separated(
+                      itemCount: _weathers.length,
+                      separatorBuilder: (BuildContext context, int index) =>
+                          Divider(height: 2),
+                      itemBuilder: (context, index) {
+                        return WeatherWidget(weather: _weathers[index]);
+                      }
+                    )
+                  )
       )
+    );
+  }
+
+  Widget errorMessage() {
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+        Text("Oops! There is something wrong"),
+        InkWell(
+          onTap: () => setState(() {
+            getWeatherList();
+          }),
+          child: Text(
+            "Try Again",
+            style: TextStyle(
+              color: Colors.blue[400],
+              decoration: TextDecoration.underline,
+            ),
+          ),
+        ),
+      ]),
     );
   }
 }
