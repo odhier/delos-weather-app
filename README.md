@@ -1,16 +1,18 @@
-# delos_weather_app
+# Delos Weather App
 
-A new Flutter project.
+A Weather Apps For Monas, Jakarta.
 
-## Getting Started
+# Preview
+# Getting Started
+### Dependencies
+ - Flutter 2.8.x statble
+ - Dart 2.15.x
+ - Get (GetX) 4.6.5
+### To get started
+ 1. Clone the repo locally, via git clone https://github.com/odhier/delos-weather-app.git `<optional local path>`.
+ 2. Install the dependencies by running `flutter pub get`.
+ 3. Use command `flutter run` or `flutter run --release` to run the app on a connected device, or iOS simulator, or Android Emulator.
 
-This project is a starting point for a Flutter application.
+optional:
+ - Run `fluter build apk` to get apk file
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
