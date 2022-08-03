@@ -22,7 +22,7 @@ class _HomePageState extends State<HomePage> {
     getWeatherList();
   }
 
-  Future<void> getWeatherList() async{
+  Future<void> getWeatherList() async {
     setState(() {
       _isLoading = true;
     });
@@ -31,26 +31,27 @@ class _HomePageState extends State<HomePage> {
       _isLoading = false;
     });
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
-        appBar: AppBar(centerTitle: false, title: const Text("Weather App")),
-        body: Container(
-            width: MediaQuery.of(context).size.width,
-            
-              child: _isLoading ? Center(child: CircularProgressIndicator()):
-              RefreshIndicator(
+      appBar: AppBar(centerTitle: false, title: const Text("Weather App")),
+      body: Container(
+        width: MediaQuery.of(context).size.width,
+        child: _isLoading
+            ? Center(child: CircularProgressIndicator())
+            : RefreshIndicator(
                 onRefresh: getWeatherList,
                 child: ListView.separated(
                   itemCount: _weathers!.length,
-                  separatorBuilder: (BuildContext context, int index) => Divider(height: 2),
-                  itemBuilder: (context, index){
-                    return WeatherWidget(
-                      weather: _weathers![index]
-                    );
+                  separatorBuilder: (BuildContext context, int index) =>
+                      Divider(height: 2),
+                  itemBuilder: (context, index) {
+                    return WeatherWidget(weather: _weathers![index]);
                   }
-                          ),
-              )));
+                )
+              )
+      )
+    );
   }
 }
