@@ -3,7 +3,8 @@
 A Weather Apps For Monas, Jakarta.
 
 # Preview
-| ![](./preview/screenshot_1.jpg)    |  ![](./preview/screenshot_2.jpg)    |
+<img src="preview/screenshot_1.jpg" height="300em" /> <img src="preview/screenshot_2.jpg" height="300em" />
+
 # Getting Started
 ### Dependencies
  - Flutter 2.8.x statble
